@@ -75,6 +75,29 @@ app.get('/api', (req, res) => {
   res.json({ status: 'active', message: 'Welcome to the SlotSwapper API!' });
 });
 
+
+// --- TEMPORARY ENVIRONMENT DEBUG ROUTE ---
+app.get('/api/debug-env', (req, res) => {
+    console.log("--- DEBUG: /api/debug-env endpoint hit ---");
+    // Log to the console for real-time viewing
+    console.log(process.env);
+    
+    // Also send as a response to view in the browser
+    res.status(200).json({
+        message: "Current Process Environment Variables",
+        // Filter to show only our relevant variables
+        relevant_vars: {
+            NODE_ENV: process.env.NODE_ENV,
+            DATABASE_URL: process.env.DATABASE_URL ? "Exists" : "MISSING",
+            FRONTEND_URL: process.env.FRONTEND_URL,
+            JWT_SECRET: process.env.JWT_SECRET ? "Exists" : "MISSING",
+            DB_HOST: process.env.DB_HOST,
+            DB_USER: process.env.DB_USER
+        },
+        all_vars: process.env // Send everything just in case
+    });
+});
+
 // --- Start the Server ---
 server.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
