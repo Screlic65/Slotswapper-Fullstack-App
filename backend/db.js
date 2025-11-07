@@ -1,9 +1,6 @@
 const { Pool } = require('pg');
 
-// Only load dotenv in a non-production environment
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
+
 // Determine if we are in production by checking the NODE_ENV variable
 const isProduction = process.env.NODE_ENV === 'production';
 
