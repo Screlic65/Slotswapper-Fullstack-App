@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 // Only load dotenv in a non-production environment
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
+
 module.exports = function(req, res, next) {
   // 1. Get token from the header
   const token = req.header('x-auth-token');
