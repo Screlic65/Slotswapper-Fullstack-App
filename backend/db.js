@@ -1,12 +1,12 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-const connectionConfig = process.postgresql://slotswapper_user:l2RZlHMU30jFqPUCt2bYxrTc9DuRdUMH@dpg-d46thsqdbo4c739h5rkg-a/slotswapper_hlvw ?
+const connectionConfig = process.env.DATABASE_URL ?
   // Production: Use the connection string from Render's environment
   {
-    connectionString: process.postgresql://slotswapper_user:l2RZlHMU30jFqPUCt2bYxrTc9DuRdUMH@dpg-d46thsqdbo4c739h5rkg-a/slotswapper_hlvw,
+    connectionString: process.env.DATABASE_URL,
     ssl: {
-      rejectUnauthorized: false
+      rejectUnauthorized: false // This is CRUCIAL for Render
     }
   } :
   // Development: Use individual variables for local Docker
