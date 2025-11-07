@@ -4,7 +4,15 @@ SlotSwapper is a dynamic, peer-to-peer scheduling application built with a moder
 
 This project is a complete full-stack implementation, featuring a secure RESTful API backend built with Node.js and Express, a PostgreSQL database, and a responsive frontend built with React. It includes JWT-based authentication, real-time WebSocket notifications, and is fully containerized with Docker for consistent and easy local development.
 
-**Live Deployed Application:** [Link to your Vercel URL will go here after you deploy]
+##Images: 
+**Swap Request notification**
+https://github.com/Screlic65/Slotswapper-Fullstack-App/blob/main/swap%20request%20incoming%20and%20outgoing.png
+
+**Swap Request Stage**
+https://github.com/Screlic65/Slotswapper-Fullstack-App/blob/main/swap%20request.png
+
+**Dashboard**
+https://github.com/Screlic65/Slotswapper-Fullstack-App/blob/main/dashboard.png
 
 ---
 
