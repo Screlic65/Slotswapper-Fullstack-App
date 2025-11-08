@@ -5,26 +5,27 @@ import AuthContext from '../context/AuthContext';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // State for error messages
+  const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
+    setError('');
 
     try {
-      // The login function now throws an error on failure, which we catch
       await login(email, password);
-      console.log("LoginPage: Login context function finished successfully.");
-      
-      // If login is successful, navigate to dashboard
       navigate('/dashboard');
-
     } catch (err) {
-      console.error('LoginPage: Login failed.', err);
-      // Set a user-friendly error message
-      setError('Login failed. Please check your email and password.');
+      console.error('Login failed on the frontend:', err);
+      
+      if (err.response && err.response.data) {
+        // This will show "Invalid credentials." from our backend.
+        setError(err.response.data.error || err.response.data.msg || 'An unknown error occurred.');
+      } else {
+        // This will show if the backend is down or there's a CORS block.
+        setError('Login failed. The server could not be reached.');
+      }
     }
   };
 
@@ -35,8 +36,7 @@ const LoginPage = () => {
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
         
-        {/* Display the error message if it exists */}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
         
         <button type="submit">Login</button>
       </form>
