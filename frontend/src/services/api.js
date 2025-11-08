@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Vite exposes env variables on import.meta.env
-// VITE_ is a required prefix for it to work.
+// The VITE_ prefix is required for security reasons.
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({
